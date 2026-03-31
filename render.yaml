@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: haapp-digitalv-java
+    runtime: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -Xmx400m -Xms128m -jar target/haapp-digitalv-1.0.0.jar
+    envVars:
+      - key: PORT
+        value: 3002
+      - key: SOFI_NODE_URL
+        sync: false
+      - key: SOFI_PYTHON_URL
+        sync: false
+      - key: MI_URL
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
